@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // Main page
+Route::get('/', fn () => Inertia::render('Welcome'));
+Route::get('/events', fn () => Inertia::render('events/page'));
+
+
 Route::get('/signup', fn () => Inertia::render('Auth/register'))->middleware('guest');
-Route::redirect('/', '/signup')->middleware('guest');
-
-
-
-Route::get('login', [UserController::class, 'loginpage'])->middleware('guest');
-Route::get('/onboarding', [UserController::class, 'onboardingPage'])->name('onboarding.page');
-Route::post('/register', [UserController::class, 'register']);
+// Route::get('login', [UserController::class, 'loginpage'])->middleware('guest');
+// Route::get('/onboarding', [UserController::class, 'onboardingPage'])->name('onboarding.page');
+// Route::post('/register', [UserController::class, 'register']);
 
 Route::group(['prefix' => 'auth'], function (){
     Route::post('onboarding', [UserController::class, 'onboarding'])->middleware('auth');
@@ -24,7 +24,7 @@ Route::group(['prefix' => 'auth'], function (){
     Route::post('check', [UserController::class, 'login'])->name('authCheck');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [HomeController::class, 'index']);
     Route::group(['prefix'=>'events'], function () {
         Route::post('/create', [EventController::class, 'store']);
@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/toggle-status/{id}', [EventController::class, 'toggleStatus']);
         Route::delete('/delete/{id}', [EventController::class, 'destroy']);
     });
-});
+// });
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');

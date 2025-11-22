@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
 // import { AuthProvider } from "@/context/auth-context"
 
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
         <div>
           <Navbar />
           <main className="min-h-screen">{children}</main>
+          <Footer/>
         </div>
       </body>
     </html>

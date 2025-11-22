@@ -11,6 +11,8 @@ use Inertia\Inertia;
 // Main page
 Route::get('/', fn () => Inertia::render('Welcome'));
 Route::get('/events', fn () => Inertia::render('events/page'));
+Route::get('/about', fn () => Inertia::render('about/page'));
+Route::get('/contact', fn () => Inertia::render('contact/page'));
 
 
 Route::get('/signup', fn () => Inertia::render('Auth/register'))->middleware('guest');
